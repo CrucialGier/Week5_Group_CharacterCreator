@@ -8,7 +8,13 @@ namespace CharacterCreator
   {
     public HomeModule()
     {
-
+      Get["/"]= _ =>{
+        return View["index.cshtml"];
+      };
+      Get["/character/new"]= _ =>{
+        List<Class> AllClasses = Class.GetAll();
+        return View["test.cshtml", AllClasses];
+      };
     }
   }
 }

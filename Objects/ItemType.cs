@@ -47,7 +47,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO itemtypes (name) OUTPUT INSERTED.id VALUES (@ItemTypeName);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO item_types (name) OUTPUT INSERTED.id VALUES (@ItemTypeName);", conn);
 
       SqlParameter itemTypeNameParameter = new SqlParameter();
       itemTypeNameParameter.ParameterName = "@ItemTypeName";
@@ -78,7 +78,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM itemtypes;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM item_types;", conn);
       rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
@@ -104,7 +104,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM itetypes WHERE id = @ItemTypeId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM item_types WHERE id = @ItemTypeId;", conn);
 
       SqlParameter itemTypeIdParameter = new SqlParameter();
       itemTypeIdParameter.ParameterName = "@ItemTypeId";
@@ -138,7 +138,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("UPDATE itemtypes SET name = @ItemTypeName OUTPUT INSERTED.id WHERE id = @QueryId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE item_types SET name = @ItemTypeName OUTPUT INSERTED.id WHERE id = @QueryId;", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@ItemTypeName";
@@ -172,7 +172,7 @@ namespace CharacterCreator
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM itemtypes WHERE id = @ItemTypeId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM item_types WHERE id = @ItemTypeId;", conn);
 
       SqlParameter itemTypeIdParameter = new SqlParameter();
       itemTypeIdParameter.ParameterName = "@ItemTypeId";
@@ -191,7 +191,7 @@ namespace CharacterCreator
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM itemtypes;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM item_types;", conn);
       cmd.ExecuteNonQuery();
     }
   }
