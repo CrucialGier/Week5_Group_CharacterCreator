@@ -85,7 +85,7 @@ namespace CharacterCreator
       {
         int itemTypeId = rdr.GetInt32(0);
         string itemTypeName = rdr.GetString(1);
-        ItemType newItemType = new ItemType(itemTypeName, classId);
+        ItemType newItemType = new ItemType(itemTypeName, itemTypeId);
         AllItemTypes.Add(newItemType);
       }
       if (rdr != null)
