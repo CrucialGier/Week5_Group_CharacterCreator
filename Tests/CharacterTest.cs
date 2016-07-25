@@ -4,18 +4,18 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace BandTracker
+namespace CharacterCreator
 {
-  public class VenueTest : IDisposable
+  public class CharacterTest : IDisposable
   {
-    public VenueTest()
+    public CharacterTest()
     {
-      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
+      DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=character_creator_test;Integrated Security=SSPI;";
     }
     [Fact]
     public void Test_DatabaseEmptyAtFirst()
     {
-      int result = Band.GetAll().Count;
+      int result = Character.GetAll().Count;
 
       Assert.Equal(0, result);
     }
@@ -23,96 +23,61 @@ namespace BandTracker
     [Fact]
     public void Test_Save_SavesToDatabase()
     {
-      Venue testVenue = new Venue("Shatter Dome");
+      Character testCharacter = new Character("Artorias", 0);
 
-      testVenue.Save();
-      List<Venue> result = Venue.GetAll();
-      List<Venue> testList = new List<Venue>{testVenue};
-
-      Assert.Equal(testList, result);
-    }
-
-    [Fact]
-    public void Test_Find_FindsVenueInDatabase()
-    {
-      Venue testVenue = new Venue("Shatter Dome");
-      testVenue.Save();
-
-      Venue foundVenue = Venue.Find(testVenue.GetId());
-
-      Assert.Equal(testVenue, foundVenue);
-    }
-
-    [Fact]
-    public void Test_AddBand_AddsBandToVenue()
-    {
-      Band testBand = new Band("Frets on Fire");
-      testBand.Save();
-      Venue testVenue = new Venue("Shatter Dome");
-      testVenue.Save();
-
-      testVenue.AddBand(testBand);
-
-      List<Band> testList = new List<Band>{testBand};
-      List<Band> result = testVenue.GetBands();
+      testCharacter.Save();
+      List<Character> result = Character.GetAll();
+      List<Character> testList = new List<Character>{testCharacter};
 
       Assert.Equal(testList, result);
     }
 
     [Fact]
-    public void Test_GetBands_ReturnsAllBandBands()
+    public void Test_Find_FindsCharacterInDatabase()
     {
-      Venue testVenue = new Venue("Shatter Dome");
-      testVenue.Save();
-      Band testBand1 = new Band("Frets on Fire");
-      testBand1.Save();
-      Band testBand2 = new Band("Crimson Typhoon and the Knife Heads");
-      testBand2.Save();
+      Character testCharacter = new Character("Artorias", 0);
+      testCharacter.Save();
 
-      testVenue.AddBand(testBand1);
-      testVenue.AddBand(testBand2);
+      Character foundCharacter = Character.Find(testCharacter.GetId());
 
-      List<Band> testList = new List<Band> {testBand1, testBand2};
-      List<Band> result = testVenue.GetBands();
-
-      Assert.Equal(testList, result);
+      Assert.Equal(testCharacter, foundCharacter);
     }
 
     [Fact]
-    public void Test_Update_UpdatesVenueWithNewValues()
+    public void Test_Update_UpdatesCharacterWithNewValues()
     {
-      Venue testVenue = new Venue("Shatter Dome");
-      testVenue.Save();
+      Character testCharacter = new Character("Artorias", 0);
+      testCharacter.Save();
 
-      testVenue.SetName("Belly of the Beast");
-      testVenue.Update();
+      testCharacter.SetName("Guts");
+      testCharacter.Update();
 
-      Venue resultVenue = Venue.Find(testVenue.GetId());
-      Venue test = new Venue("Belly of the Beast", testVenue.GetId());
+      Character resultCharacter = Character.Find(testCharacter.GetId());
+      Character test = new Character("Guts", 0, testCharacter.GetId());
 
-      Assert.Equal(test, resultVenue);
+      Assert.Equal(test, resultCharacter);
     }
 
     [Fact]
-    public void Test_Delete_DeletesVenueFromDatabase()
+    public void Test_Delete_DeletesCharacterFromDatabase()
     {
-      Venue testVenue1 = new Venue("Shatter Dome");
-      testVenue1.Save();
-      Venue testVenue2 = new Venue("Belly of the Beast");
-      testVenue2.Save();
+      Character testCharacter1 = new Character("Artorias", 0);
+      testCharacter1.Save();
+      Character testCharacter2 = new Character("Guts", 0);
+      testCharacter2.Save();
 
-      Venue.Delete(testVenue1.GetId());
+      Character.Delete(testCharacter1.GetId());
 
-      List<Venue> testList = new List<Venue>{testVenue2};
-      List<Venue> resultList = Venue.GetAll();
+      List<Character> testList = new List<Character>{testCharacter2};
+      List<Character> resultList = Character.GetAll();
 
       Assert.Equal(testList, resultList);
     }
 
     public void Dispose()
     {
-      Band.DeleteAll();
-      Venue.DeleteAll();
+      // .DeleteAll();
+      Character.DeleteAll();
     }
   }
 }

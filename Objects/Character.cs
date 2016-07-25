@@ -8,11 +8,13 @@ namespace CharacterCreator
   {
     private int _id;
     private string _name;
+    private int _classId;
 
-    public Venue(string Name, int Id = 0)
+    public Character(string Name, int ClassId, int Id = 0)
     {
       _id = Id;
       _name = Name;
+      _classId = ClassId;
     }
 
     public int GetId()
@@ -29,18 +31,28 @@ namespace CharacterCreator
       _name = Name;
     }
 
-    public override bool Equals(System.Object otherVenue)
+    public int GetClassId()
     {
-      if (!(otherVenue is Venue))
+      return _classId;
+    }
+    public void SetClass(int ClassId)
+    {
+      _classId = ClassId;
+    }
+
+    public override bool Equals(System.Object otherCharacter)
+    {
+      if (!(otherCharacter is Character))
       {
         return false;
       }
       else
       {
-        Venue newVenue = (Venue) otherVenue;
-        bool idEquality = this.GetId() == newVenue.GetId();
-        bool nameEquality = this.GetName() == newVenue.GetName();
-        return (idEquality && nameEquality);
+        Character newCharacter = (Character) otherCharacter;
+        bool idEquality = this.GetId() == newCharacter.GetId();
+        bool nameEquality = this.GetName() == newCharacter.GetName();
+        bool classIdEquality = this.GetClassId() == newCharacter.GetClassId();
+        return (idEquality && nameEquality && classIdEquality);
       }
     }
 
@@ -50,13 +62,18 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO venues (name) OUTPUT INSERTED.id VALUES (@VenueName);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO characters (name, class_id) OUTPUT INSERTED.id VALUES (@CharacterName, @CharacterClassId);", conn);
 
-      SqlParameter venueNameParameter = new SqlParameter();
-      venueNameParameter.ParameterName = "@VenueName";
-      venueNameParameter.Value = this.GetName();
+      SqlParameter characterNameParameter = new SqlParameter();
+      characterNameParameter.ParameterName = "@CharacterName";
+      characterNameParameter.Value = this.GetName();
 
-      cmd.Parameters.Add(venueNameParameter);
+      SqlParameter characterClassIdParameter = new SqlParameter();
+      characterClassIdParameter.ParameterName = "@CharacterClassId";
+      characterClassIdParameter.Value = this.GetClassId();
+
+      cmd.Parameters.Add(characterNameParameter);
+      cmd.Parameters.Add(characterClassIdParameter);
 
       rdr = cmd.ExecuteReader();
 
@@ -74,23 +91,24 @@ namespace CharacterCreator
       }
     }
 
-    public static List<Venue> GetAll()
+    public static List<Character> GetAll()
     {
-      List<Venue> AllVenues = new List<Venue>{};
+      List<Character> AllCharacters = new List<Character>{};
 
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM venues;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM characters;", conn);
       rdr = cmd.ExecuteReader();
 
       while(rdr.Read())
       {
-        int venueId = rdr.GetInt32(0);
-        string venueName = rdr.GetString(1);
-        Venue newVenue = new Venue(venueName, venueId);
-        AllVenues.Add(newVenue);
+        int characterId = rdr.GetInt32(0);
+        string characterName = rdr.GetString(1);
+        int characterClassId = rdr.GetInt32(2);
+        Character newCharacter = new Character(characterName, characterClassId, characterId);
+        AllCharacters.Add(newCharacter);
       }
       if (rdr != null)
       {
@@ -100,31 +118,32 @@ namespace CharacterCreator
       {
         conn.Close();
       }
-      return AllVenues;
+      return AllCharacters;
     }
 
-    public static Venue Find(int Id)
+    public static Character Find(int Id)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM characters WHERE id = @CharacterId;", conn);
 
-      SqlParameter venueIdParameter = new SqlParameter();
-      venueIdParameter.ParameterName = "@VenueId";
-      venueIdParameter.Value = Id.ToString();
+      SqlParameter characterIdParameter = new SqlParameter();
+      characterIdParameter.ParameterName = "@CharacterId";
+      characterIdParameter.Value = Id.ToString();
 
-      cmd.Parameters.Add(venueIdParameter);
+      cmd.Parameters.Add(characterIdParameter);
       rdr = cmd.ExecuteReader();
 
-      Venue foundVenue = null;
+      Character foundCharacter = null;
 
       while(rdr.Read())
       {
         int foundId = rdr.GetInt32(0);
         string foundName = rdr.GetString(1);
-        foundVenue = new Venue(foundName, foundId);
+        int foundClassId = rdr.GetInt32(2);
+        foundCharacter = new Character(foundName, foundClassId, foundId);
       }
 
       if (rdr != null)
@@ -135,68 +154,7 @@ namespace CharacterCreator
       {
         conn.Close();
       }
-      return foundVenue;
-    }
-
-    public void AddBand(Band newBand)
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-
-      SqlCommand cmd = new SqlCommand("INSERT INTO venues_bands (venue_id, band_id) VALUES (@VenueId, @BandId);", conn);
-
-      SqlParameter venueIdParameter = new SqlParameter();
-      venueIdParameter.ParameterName = "@BandId";
-      venueIdParameter.Value = newBand.GetId();
-
-      SqlParameter bandIdParameter = new SqlParameter();
-      bandIdParameter.ParameterName = "@VenueId";
-      bandIdParameter.Value = this.GetId();
-
-      cmd.Parameters.Add(bandIdParameter);
-      cmd.Parameters.Add(venueIdParameter);
-
-      cmd.ExecuteNonQuery();
-
-      if (conn != null)
-      {
-        conn.Close();
-      }
-    }
-
-    public List<Band> GetBands()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-      SqlDataReader rdr;
-
-      SqlCommand cmd = new SqlCommand("SELECT bands.* FROM bands JOIN venues_bands ON(bands.id = venues_bands.band_id) JOIN venues ON(venues_bands.venue_id = venues.id) WHERE venues.id = @VenueId;", conn);
-
-      SqlParameter venueIdParameter = new SqlParameter();
-      venueIdParameter.ParameterName = "@VenueId";
-      venueIdParameter.Value = this.GetId();
-
-      cmd.Parameters.Add(venueIdParameter);
-      rdr = cmd.ExecuteReader();
-
-      List<Band> allBands = new List<Band> {};
-
-      while (rdr.Read())
-      {
-        int thisBandId = rdr.GetInt32(0);
-        string bandName = rdr.GetString(1);
-        Band foundBand = new Band(bandName, thisBandId);
-        allBands.Add(foundBand);
-      }
-      if (rdr != null)
-      {
-        rdr.Close();
-      }
-      if (conn != null)
-      {
-        conn.Close();
-      }
-      return allBands;
+      return foundCharacter;
     }
 
     public void Update()
@@ -205,17 +163,22 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @VenueName OUTPUT INSERTED.id WHERE id = @QueryId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE characters SET name = @CharacterName OUTPUT INSERTED.id WHERE id = @QueryId; Update characters SET class_id = @CharacterClassId OUTPUT INSERTED.id WHERE id = @QueryId;", conn);
 
       SqlParameter nameParameter = new SqlParameter();
-      nameParameter.ParameterName = "@VenueName";
+      nameParameter.ParameterName = "@CharacterName";
       nameParameter.Value = this.GetName();
+
+      SqlParameter classIdParameter = new SqlParameter();
+      classIdParameter.ParameterName = "@CharacterClassId";
+      classIdParameter.Value = this.GetClassId();
 
       SqlParameter queryIdParameter = new SqlParameter();
       queryIdParameter.ParameterName = "@QueryId";
       queryIdParameter.Value = this.GetId();
 
       cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(classIdParameter);
       cmd.Parameters.Add(queryIdParameter);
 
       rdr = cmd.ExecuteReader();
@@ -239,10 +202,10 @@ namespace CharacterCreator
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM characters WHERE id = @CharacterId;", conn);
 
       SqlParameter courseIdParameter = new SqlParameter();
-      courseIdParameter.ParameterName = "@VenueId";
+      courseIdParameter.ParameterName = "@CharacterId";
       courseIdParameter.Value = Id.ToString();
 
       cmd.Parameters.Add(courseIdParameter);
@@ -258,7 +221,7 @@ namespace CharacterCreator
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
-      SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM characters;", conn);
       cmd.ExecuteNonQuery();
     }
   }
