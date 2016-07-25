@@ -76,7 +76,6 @@ namespace CharacterCreator
 
     public void Dispose()
     {
-      // .DeleteAll();
       Character.DeleteAll();
     }
   }
