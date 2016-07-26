@@ -1,56 +1,78 @@
 @import "partials/base";
-
+html {
+    box-sizing: border-box;
+}
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+}
 body {
-  background-color: #687C97;
-  color: white;
-  text-align: center;
-  margin: 0;
+    background-color: #687C97;
+    color: white;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
 }
-
 button {
-  margin: 10px;
-  padding: 20px;
-  font-size: 2em;
-  color: #687C97;
-  border: 3px solid black;
-  background-color: white;
-  border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    font-size: 2em;
+    color: #687C97;
+    border: 3px solid black;
+    background-color: white;
+    border-radius: 10px;
 }
-  .main-page {
+.main-page {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .main-img {
+}
+.char-page {
+    display: flex;
+    height: 100vh;
+    div {
+        border: 1px dotted black;
+    }
+    .character-form {
+        width: 200px;
+        float: left;
+        display: flex;
+        align-items: center;
+        form {
+            width: 100%;
+        }
+        .extended-form {
+          display: none;
+        }
+        #class option[value="custom"]:checked {
+          @debug &;
+        }
+    }
+    .armour {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        .armour-piece {
+            height: 150px;
+            width: 150px;
+            border: 1px solid black;
+        }
+    }
+    .character {
+        flex: 1;
+    }
+}
+.main-img {
     width: 100%;
     height: 800px;
     margin: 20px;
     border: 1px solid black;
-  }
-
-  .title {
+}
+.title {
     position: relative;
     font-size: 150px;
-  }
-
-  .armour {
-    height: 600px;
-    width: 100%;
-    border: 1px solid black;
-    display: flex;
-    flex-wrap: wrap;
-    float: right;
-  }
-
-  .armour-piece {
-    height: 150px;
-    width: 150px;
-    border: 1px solid black;
-  }
-
-  .form {
-    border: 1px solid black;
-    width: 200px;
-    float: left;
-  }
+}
