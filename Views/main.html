@@ -10,83 +10,48 @@
 <body>
 
     <div class="char-page hide-char">
-        <div class="character-form">
-            <form>
-                <p>Name:</p>
-                <input type="text" name="name" value="">
-                <div class="form1">
-                    <p>Choose your character type</p>
-                    <select id="class">
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="custom">Custom</option>
-                    </select>
-                </div>
-                <div class="extended-form">
-                <div class="form2">
-                    <p>Choose your chest piece</p>
-                    <select>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                </div>
-                <div class="form3">
-                    <p>Choose your arm pieces</p>
-                    <select>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                </div>
-                <div class="form4">
-                    <p>Choose your leg pieces</p>
-                    <select>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                </div>
-                <div class="form5">
-                    <p>Choose your head piece</p>
-                    <select>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                </div>
-                <div class="form6">
-                    <p>Choose your weapon</p>
-                    <select>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                    </select>
-                </div>
-
-                </div>
-                <input type="submit" name="name" value="Submit">
-            </form>
-        </div>
-        <div class="armour">
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-            <div class="armour-piece"></div>
-        </div>
+        <form class="options">
+            <p>Name:</p>
+            <input type="text" name="name" value="">
+            <p>Choose your character class</p>
+            <select id="class">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="custom">Custom</option>
+            </select>
+            <p>Choose your chest piece</p>
+            <input type="radio" id="chest-1" name="chest" value="chest-1">
+            <label for="chest-1" class="item">
+              <img src="#" alt="" />
+            </label>
+            <p>Choose your arm pieces</p>
+            <input type="radio" id="arm-1" name="arm" value="arm-1">
+            <label for="arm-1" class="item">
+              <img src="#" alt="" />
+            </label>
+            <p>Choose your leg pieces</p>
+            <input type="radio" id="leg-1" name="leg" value="leg-1">
+            <label for="leg-1" class="item">
+              <img src="#" alt="" />
+            </label>
+            <p>Choose your head piece</p>
+            <input type="radio" id="head-1" name="head" value="head-1">
+            <label for="head-1" class="item">
+              <img src="#" alt="" />
+            </label>
+            <p>Choose your weapon</p>
+            <input type="radio" id="weapon-1" name="weapon" value="weapon-1">
+            <label for="weapon-1" class="item">
+              <img src="#" alt="" />
+            </label>
+            <button type="submit">Create Character</button>
+        </form>
         <div class="character">
 
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="../Content/js/main.js"></script>
 </body>
 
 </html>
