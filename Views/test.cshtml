@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../Content/css/main.css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+
+    <div class="char-page hide-char">
+      <div class="character">
+
+      </div>
+      <div class="armour">
+        <div class= "armour-piece"><a href="#"><img src="http://www.thespecialistsltd.com/files/Storage_Red_Leather_Briefcase.jpg" alt="briefcase" />@foreach(var ob in Model["item"])
+        {
+          { if(ob.GetId() == 1)
+            @ob.GetName()
+          }
+          }</a>
+        </div>
+
+      </div>
+
+      <div class="form">
+        <p>Name:</p>
+        <input type="text" name="name" value="">
+        <div class="form1"><p>Choose your character type</p>
+          <select>
+            @foreach (var c in @Model["class"])
+            {
+
+              {
+                <option value="@c.GetId()">@c.GetName()</option>
+              }
+            }
+          </select>
+        </div>
+        <div class="form2"><p>Choose your Weapon</p>
+          <select>
+            @foreach (var item in @Model["item"])
+            {
+              if (item.GetTypeId() == 1)
+              {
+                <option value="@item.GetId()">@item.GetName()</option>
+              }
+            }
+          </select>
+        </div>
+        <div class="form3"><p>Choose your Armor</p>
+          <select>
+            @foreach (var item in @Model["item"])
+            {
+              if (item.GetTypeId() == 2)
+              {
+                <option value="@item.GetId()">@item.GetName()</option>
+              }
+            }
+          </select>
+        </div>
+        <div class="form4"><p>Choose your Specials</p>
+          <select>
+            @foreach (var item in @Model["item"])
+            {
+              if (item.GetTypeId() == 3)
+              {
+                <option value="@item.GetId()">@item.GetName()</option>
+              }
+            }
+          </select>
+        </div>
+        <div class="form5"><p>Choose your head piece</p>
+          <select>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+        <div class="form6"><p>Choose your weapon</p>
+          <select>
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+          </select>
+        </div>
+        <div class="">
+
+          <button type="submit" name="name" value="Submit">Create</button>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>

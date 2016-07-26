@@ -70,4 +70,29 @@ button {
   position: relative;
   font-size: 150px; }
 
+<<<<<<< HEAD
+=======
+.armour {
+  height: 600px;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  float: right; }
+
+.armour-piece {
+  height: 150px;
+  width: 150px;
+  border: 1px solid black; }
+
+.form {
+  border: 1px solid black;
+  width: 200px;
+  float: left; }
+ img{
+   height: 150px;
+   width: 150px;
+   border: 1px solid black;
+ }
+>>>>>>> 76223a74a00b4bc86c3faedfc6bec6d3fb824856
 /*# sourceMappingURL=main.css.map */
