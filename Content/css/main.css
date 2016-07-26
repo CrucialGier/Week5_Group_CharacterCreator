@@ -46,5 +46,9 @@ button {
   border: 1px solid black;
   width: 200px;
   float: left; }
-
+ img{
+   height: 150px;
+   width: 150px;
+   border: 1px solid black;
+ }
 /*# sourceMappingURL=main.css.map */
