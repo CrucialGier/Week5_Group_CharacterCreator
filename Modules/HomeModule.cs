@@ -18,6 +18,14 @@ namespace CharacterCreator
         model.Add("itemTypes", ItemType.GetAll());
         return View["test.cshtml", model];
       };
+      Post["/character/create"]= _ =>{
+        Character newCharacter = new Character(Request.Form[""],)
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("class", Class.GetAll());
+        model.Add("item", Item.GetAll());
+        model.Add("itemTypes", ItemType.GetAll());
+        return View["new_character.cshtml", model];
+      };
     }
   }
 }

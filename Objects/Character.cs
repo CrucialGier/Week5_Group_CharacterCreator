@@ -9,12 +9,20 @@ namespace CharacterCreator
     private int _id;
     private string _name;
     private int _classId;
+    private int _bodyTypeId;
+    private int _weaponId;
+    private int _armorId;
+    private int _specialId;
 
-    public Character(string Name, int ClassId, int Id = 0)
+    public Character(string Name, int ClassId, int bodyTypeId, int weaponId, int armorId, int specialId, int Id = 0)
     {
       _id = Id;
       _name = Name;
       _classId = ClassId;
+      _bodyTypeId = bodyTypeId;
+      _weaponId = weaponId;
+      _armorId = armorId;
+      _specialId = specialId;
     }
 
     public int GetId()
@@ -39,6 +47,38 @@ namespace CharacterCreator
     {
       _classId = ClassId;
     }
+    public int GetBodyTypeId()
+    {
+      return _bodyTypeId;
+    }
+    public void SetBodyType(int BodyTypeId)
+    {
+      _bodyTypeId = BodyTypeId;
+    }
+    public int GetWeaponId()
+    {
+      return _weaponId;
+    }
+    public void SetWeapon(int WeaponId)
+    {
+      _weaponId = WeaponId;
+    }
+    public int GetArmorId()
+    {
+      return _armorId;
+    }
+    public void SetArmor(int ArmorId)
+    {
+      _armorId = ArmorId;
+    }
+    public int GetSpecialId()
+    {
+      return _specialId;
+    }
+    public void SetSpecial(int SpecialId)
+    {
+      _specialId = SpecialId;
+    }
 
     public override bool Equals(System.Object otherCharacter)
     {
@@ -52,7 +92,11 @@ namespace CharacterCreator
         bool idEquality = this.GetId() == newCharacter.GetId();
         bool nameEquality = this.GetName() == newCharacter.GetName();
         bool classIdEquality = this.GetClassId() == newCharacter.GetClassId();
-        return (idEquality && nameEquality && classIdEquality);
+        bool bodyTypeIdEquality = this.GetBodyTypeId() == newCharacter.GetBodyTypeId();
+        bool weaponIdEquality = this.GetWeaponId() == newCharacter.GetWeaponId();
+        bool armorIdEquality = this.GetArmorId() == newCharacter.GetArmorId();
+        bool specialIdEquality = this.GetSpecialId() == newCharacter.GetSpecialId();
+        return (idEquality && nameEquality && classIdEquality && bodyTypeIdEquality && weaponIdEquality && armorIdEquality && specialIdEquality);
       }
     }
 
@@ -62,7 +106,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO characters (name, class_id) OUTPUT INSERTED.id VALUES (@CharacterName, @CharacterClassId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO characters (name, class_id, bodyType_id, weapon_id, armor_id, specia_id) OUTPUT INSERTED.id VALUES (@CharacterName, @CharacterClassId, @BodyTypeId, @WeaponId, @ArmorId, @SpecialId);", conn);
 
       SqlParameter characterNameParameter = new SqlParameter();
       characterNameParameter.ParameterName = "@CharacterName";
@@ -72,8 +116,28 @@ namespace CharacterCreator
       characterClassIdParameter.ParameterName = "@CharacterClassId";
       characterClassIdParameter.Value = this.GetClassId();
 
+      SqlParameter bodyTypeIdParameter = new SqlParameter();
+      bodyTypeIdParameter.ParameterName = "@BodyTypeId";
+      bodyTypeIdParameter.Value = this.GetBodyTypeId();
+
+      SqlParameter weaponIdParameter = new SqlParameter();
+      weaponIdParameter.ParameterName = "@WeaponId";
+      weaponIdParameter.Value = this.GetWeaponId();
+
+      SqlParameter ArmorIdParameter = new SqlParameter();
+      ArmorIdParameter.ParameterName = "@ArmorId";
+      ArmorIdParameter.Value = this.GetArmorId();
+
+      SqlParameter SpecialIdParameter = new SqlParameter();
+      SpecialIdParameter.ParameterName = "@SpecialId";
+      SpecialIdParameter.Value = this.GetSpecialId();
+
       cmd.Parameters.Add(characterNameParameter);
       cmd.Parameters.Add(characterClassIdParameter);
+      cmd.Parameters.Add(bodyTypeIdParameter);
+      cmd.Parameters.Add(weaponIdParameter);
+      cmd.Parameters.Add(armorIdParameter);
+      cmd.Parameters.Add(specialIdParameter);
 
       rdr = cmd.ExecuteReader();
 
@@ -107,7 +171,11 @@ namespace CharacterCreator
         int characterId = rdr.GetInt32(0);
         string characterName = rdr.GetString(1);
         int characterClassId = rdr.GetInt32(2);
-        Character newCharacter = new Character(characterName, characterClassId, characterId);
+        int bodyTypeId = rdr.GetInt32(3);
+        int weaponId = rdr.GetInt32(4);
+        int armorId = rdr.GetInt32(5);
+        int specialId = rdr.GetInt32(6);
+        Character newCharacter = new Character(characterName, characterClassId, bodyTypeId, weaponId, armorId, specialId, characterId);
         AllCharacters.Add(newCharacter);
       }
       if (rdr != null)
@@ -143,7 +211,12 @@ namespace CharacterCreator
         int foundId = rdr.GetInt32(0);
         string foundName = rdr.GetString(1);
         int foundClassId = rdr.GetInt32(2);
-        foundCharacter = new Character(foundName, foundClassId, foundId);
+        int foundCharacterClassId = rdr.GetInt32(2);
+        int foundBodyTypeId = rdr.GetInt32(3);
+        int foundWeaponId = rdr.GetInt32(4);
+        int foundArmorId = rdr.GetInt32(5);
+        int foundSpecialId = rdr.GetInt32(6);
+        foundCharacter = new Character(foundName, foundClassId, foundBodyTypeId, foundWeaponId, foundArmorId, foundSpecialId, foundId);
       }
 
       if (rdr != null)
@@ -163,7 +236,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("UPDATE characters SET name = @CharacterName OUTPUT INSERTED.id WHERE id = @QueryId; Update characters SET class_id = @CharacterClassId OUTPUT INSERTED.id WHERE id = @QueryId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE characters SET name = @CharacterName, class_id = @ClassId, bodyType_id = @BodyTypeId, weapon_id = @WeaponId, armor_id = @ArmorId, special_id = @SpecialId OUTPUT INSERTED.name, INSERTED.class_id, INSERTED.bodyType_id, INSERTED.weapon_id, INSERTED.armor_id, INSERTED.special_id INSERTED. WHERE id = @QueryId;", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@CharacterName";
@@ -173,12 +246,32 @@ namespace CharacterCreator
       classIdParameter.ParameterName = "@CharacterClassId";
       classIdParameter.Value = this.GetClassId();
 
+      SqlParameterbodyTypeIdParameter = new SqlParameter();
+     bodyTypeIdParameter.ParameterName = "@BodyTypeId";
+     bodyTypeIdParameter.Value = this.GetBodyTypeId();
+
+      SqlParameter weaponIdParameter = new SqlParameter();
+      weaponIdParameter.ParameterName = "@WeaponId";
+      weaponIdParameter.Value = this.GetWeaponId();
+
+      SqlParameter ArmorIdParameter = new SqlParameter();
+      ArmorIdParameter.ParameterName = "@ArmorId";
+      ArmorIdParameter.Value = this.GetArmorId();
+
+      SqlParameter specialIdParameter = new SqlParameter();
+      specialIdParameter.ParameterName = "@SpecialId";
+      specialIdParameter.Value = this.GetSpecialId();
+
       SqlParameter queryIdParameter = new SqlParameter();
       queryIdParameter.ParameterName = "@QueryId";
       queryIdParameter.Value = this.GetId();
 
       cmd.Parameters.Add(nameParameter);
       cmd.Parameters.Add(classIdParameter);
+      cmd.Parameters.Add(bodyTypeIdParameter);
+      cmd.Parameters.Add(weaponIdParameter);
+      cmd.Parameters.Add(armorIdParameter);
+      cmd.Parameters.Add(specialIdParameter);
       cmd.Parameters.Add(queryIdParameter);
 
       rdr = cmd.ExecuteReader();
