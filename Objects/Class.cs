@@ -186,7 +186,8 @@ namespace CharacterCreator
         int thisItemId = rdr.GetInt32(0);
         string itemName = rdr.GetString(1);
         int itemTypeId = rdr.GetInt32(2);
-        Item foundItem = new Item(itemName, itemTypeId, thisItemId);
+        string itemImage = rdr.GetString(3);
+        Item foundItem = new Item(itemName, itemTypeId, itemImage, thisItemId);
         allItems.Add(foundItem);
       }
       if (rdr != null)

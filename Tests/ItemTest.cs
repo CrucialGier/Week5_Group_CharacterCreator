@@ -23,7 +23,7 @@ namespace CharacterCreator
     [Fact]
     public void Test_Save_SavesToDatabase()
     {
-      Item testItem = new Item("sword", 0);
+      Item testItem = new Item("sword", 0, "briefcase.jpg");
 
       testItem.Save();
       List<Item> result = Item.GetAll();
@@ -35,7 +35,7 @@ namespace CharacterCreator
     [Fact]
     public void Test_Find_FindsItemInDatabase()
     {
-      Item testItem = new Item("sword", 0);
+      Item testItem = new Item("sword", 0, "briefcase.jpg");
       testItem.Save();
 
       Item foundItem = Item.Find(testItem.GetId());
@@ -46,14 +46,14 @@ namespace CharacterCreator
     [Fact]
     public void Test_Update_UpdatesItemWithNewValues()
     {
-      Item testItem = new Item("sword", 0);
+      Item testItem = new Item("sword", 0, "briefcase.jpg");
       testItem.Save();
 
       testItem.SetName("armor");
       testItem.Update();
 
       Item resultItem = Item.Find(testItem.GetId());
-      Item test = new Item("armor", 0, testItem.GetId());
+      Item test = new Item("armor", 0, "briefcase.jpg", testItem.GetId());
 
       Assert.Equal(test, resultItem);
     }
@@ -61,9 +61,9 @@ namespace CharacterCreator
     [Fact]
     public void Test_Delete_DeletesItemFromDatabase()
     {
-      Item testItem1 = new Item("sword", 0);
+      Item testItem1 = new Item("sword", 0, "briefcase.jpg");
       testItem1.Save();
-      Item testItem2 = new Item("shield", 0);
+      Item testItem2 = new Item("shield", 0, "briefcase.jpg");
       testItem2.Save();
 
       Item.Delete(testItem1.GetId());
@@ -80,7 +80,7 @@ namespace CharacterCreator
 
       Class testClass = new Class("Knight");
       testClass.Save();
-      Item testItem = new Item("Sword", 0);
+      Item testItem = new Item("Sword", 0, "briefcase.jpg");
       testItem.Save();
 
       testItem.AddClass(testClass);
@@ -94,7 +94,7 @@ namespace CharacterCreator
     [Fact]
     public void Test_GetClasses_ReturnsAllItemsClasses()
     {
-      Item testItem = new Item("sword", 0);
+      Item testItem = new Item("sword", 0, "briefcase.jpg");
       testItem.Save();
       Class testClass1 = new Class("Knight");
       testClass1.Save();

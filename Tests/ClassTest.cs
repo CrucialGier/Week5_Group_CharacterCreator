@@ -46,7 +46,7 @@ namespace CharacterCreator
     [Fact]
     public void Test_AddItem_AddsItemToClass()
     {
-      Item testItem = new Item("Sword", 0);
+      Item testItem = new Item("Sword", 0, "briefcase.jpg");
       testItem.Save();
       Class testClass = new Class("Knight");
       testClass.Save();
@@ -64,9 +64,9 @@ namespace CharacterCreator
     {
       Class testClass = new Class("Knight");
       testClass.Save();
-      Item testItem1 = new Item("Sword", 0);
+      Item testItem1 = new Item("Sword", 0, "briefcase.jpg");
       testItem1.Save();
-      Item testItem2 = new Item("Shield", 0);
+      Item testItem2 = new Item("Shield", 0, "briefcase.jpg");
       testItem2.Save();
 
       testClass.AddItem(testItem1);

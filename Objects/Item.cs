@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System;
 
+
 namespace CharacterCreator
 {
   public class Item
@@ -9,12 +10,14 @@ namespace CharacterCreator
     private int _id;
     private string _name;
     private int _typeId;
+    private string _image;
 
-    public Item(string Name, int TypeId, int Id = 0)
+    public Item(string Name,  int TypeId, string image, int Id = 0)
     {
       _id = Id;
       _name = Name;
       _typeId = TypeId;
+      _image = image;
     }
 
     public int GetId()
@@ -29,6 +32,14 @@ namespace CharacterCreator
     public void SetName(string Name)
     {
       _name = Name;
+    }
+    public string GetImage()
+    {
+      return _image;
+    }
+    public void SetImage(string Image)
+    {
+      _image = Image;
     }
 
     public int GetTypeId()
@@ -52,6 +63,7 @@ namespace CharacterCreator
         bool idEquality = this.GetId() == newItem.GetId();
         bool nameEquality = this.GetName() == newItem.GetName();
         bool typeIdEquality = this.GetTypeId() == newItem.GetTypeId();
+        bool imageEquality = this.GetImage() == newItem.GetImage();
         return (idEquality && nameEquality && typeIdEquality);
       }
     }
@@ -62,7 +74,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO items (name, type_id) OUTPUT INSERTED.id VALUES (@ItemName, @ItemTypeId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO items (name, type_id, image) OUTPUT INSERTED.id VALUES (@ItemName, @ItemTypeId, @ItemImage);", conn);
 
       SqlParameter itemNameParameter = new SqlParameter();
       itemNameParameter.ParameterName = "@ItemName";
@@ -72,8 +84,13 @@ namespace CharacterCreator
       typeIdParameter.ParameterName = "@ItemTypeId";
       typeIdParameter.Value = this.GetTypeId();
 
+      SqlParameter imageParameter = new SqlParameter();
+      imageParameter.ParameterName = "@ItemImage";
+      imageParameter.Value = this.GetImage();
+
       cmd.Parameters.Add(typeIdParameter);
       cmd.Parameters.Add(itemNameParameter);
+      cmd.Parameters.Add(imageParameter);
 
       rdr = cmd.ExecuteReader();
 
@@ -107,7 +124,8 @@ namespace CharacterCreator
         int itemId = rdr.GetInt32(0);
         string itemName = rdr.GetString(1);
         int itemTypeId = rdr.GetInt32(2);
-        Item newItem = new Item(itemName, itemTypeId, itemId);
+        string itemImage = rdr.GetString(3);
+        Item newItem = new Item(itemName, itemTypeId, itemImage, itemId);
         AllItems.Add(newItem);
       }
       if (rdr != null)
@@ -143,7 +161,8 @@ namespace CharacterCreator
         int foundId = rdr.GetInt32(0);
         string foundName = rdr.GetString(1);
         int foundTypeId = rdr.GetInt32(2);
-        foundItem = new Item(foundName, foundTypeId, foundId);
+        string foundImage = rdr.GetString(3);
+        foundItem = new Item(foundName, foundTypeId, foundImage, foundId);
       }
 
       if (rdr != null)
@@ -234,12 +253,17 @@ namespace CharacterCreator
       typeIdParameter.ParameterName = "@ItemTypeId";
       typeIdParameter.Value = this.GetTypeId();
 
+      SqlParameter imageParameter = new SqlParameter();
+      imageParameter.ParameterName = "@ItemImage";
+      imageParameter.Value = this.GetImage();
+
       SqlParameter queryIdParameter = new SqlParameter();
       queryIdParameter.ParameterName = "@QueryId";
       queryIdParameter.Value = this.GetId();
 
       cmd.Parameters.Add(nameParameter);
       cmd.Parameters.Add(typeIdParameter);
+      cmd.Parameters.Add(imageParameter);
       cmd.Parameters.Add(queryIdParameter);
 
       rdr = cmd.ExecuteReader();

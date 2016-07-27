@@ -23,13 +23,14 @@
             </select>
 
             <p>Choose your Weapon</p>
+
             @foreach (var item in @Model["item"])
             {
               if(@item.GetTypeId() == 1)
               {
-            <input type="radio" id="weapon-@item.GetId()" name="weapon" value="weapon-@item.GetId()">
+            <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()">
             <label for="weapon-@item.GetId()" class="item">
-              @item.GetName()<img src="/img/briefcase.jpg" alt="" />
+              @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
             </label>}
           }
 
@@ -58,6 +59,7 @@
             <button type="submit">Create Character</button>
         </form>
         <div class="character">
+          <img class="weapon" src="" alt="" />
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
