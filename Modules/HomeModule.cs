@@ -19,7 +19,7 @@ namespace CharacterCreator
         return View["test.cshtml", model];
       };
       Post["/character/create"]= _ =>{
-        Character newCharacter = new Character(Request.Form[""],)
+        Character newCharacter = new Character(Request.Form["name"],Request.Form["klass"],Request.Form["bodyType"],Request.Form["weapon"],Request.Form["armor"],Request.Form["special"]);
         Dictionary<string, object> model = new Dictionary<string, object>();
         model.Add("class", Class.GetAll());
         model.Add("item", Item.GetAll());
