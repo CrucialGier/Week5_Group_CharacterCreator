@@ -23,7 +23,7 @@ namespace CharacterCreator
     [Fact]
     public void Test_Save_SavesToDatabase()
     {
-      Character testCharacter = new Character("Artorias", 0);
+      Character testCharacter = new Character("Artorias", 0, 1, 1,1,1);
 
       testCharacter.Save();
       List<Character> result = Character.GetAll();
@@ -35,7 +35,7 @@ namespace CharacterCreator
     [Fact]
     public void Test_Find_FindsCharacterInDatabase()
     {
-      Character testCharacter = new Character("Artorias", 0);
+      Character testCharacter = new Character("Artorias", 0,1, 1,1,1);
       testCharacter.Save();
 
       Character foundCharacter = Character.Find(testCharacter.GetId());
@@ -46,14 +46,14 @@ namespace CharacterCreator
     [Fact]
     public void Test_Update_UpdatesCharacterWithNewValues()
     {
-      Character testCharacter = new Character("Artorias", 0);
+      Character testCharacter = new Character("Artorias", 0,1, 1,1,1);
       testCharacter.Save();
 
       testCharacter.SetName("Guts");
       testCharacter.Update();
 
       Character resultCharacter = Character.Find(testCharacter.GetId());
-      Character test = new Character("Guts", 0, testCharacter.GetId());
+      Character test = new Character("Guts", 0,1, 1,1,1, testCharacter.GetId());
 
       Assert.Equal(test, resultCharacter);
     }
@@ -61,9 +61,9 @@ namespace CharacterCreator
     [Fact]
     public void Test_Delete_DeletesCharacterFromDatabase()
     {
-      Character testCharacter1 = new Character("Artorias", 0);
+      Character testCharacter1 = new Character("Artorias", 0,1, 1,1,1);
       testCharacter1.Save();
-      Character testCharacter2 = new Character("Guts", 0);
+      Character testCharacter2 = new Character("Guts", 0,1, 1,1,1);
       testCharacter2.Save();
 
       Character.Delete(testCharacter1.GetId());

@@ -124,13 +124,13 @@ namespace CharacterCreator
       weaponIdParameter.ParameterName = "@WeaponId";
       weaponIdParameter.Value = this.GetWeaponId();
 
-      SqlParameter ArmorIdParameter = new SqlParameter();
-      ArmorIdParameter.ParameterName = "@ArmorId";
-      ArmorIdParameter.Value = this.GetArmorId();
+      SqlParameter armorIdParameter = new SqlParameter();
+      armorIdParameter.ParameterName = "@ArmorId";
+      armorIdParameter.Value = this.GetArmorId();
 
-      SqlParameter SpecialIdParameter = new SqlParameter();
-      SpecialIdParameter.ParameterName = "@SpecialId";
-      SpecialIdParameter.Value = this.GetSpecialId();
+      SqlParameter specialIdParameter = new SqlParameter();
+      specialIdParameter.ParameterName = "@SpecialId";
+      specialIdParameter.Value = this.GetSpecialId();
 
       cmd.Parameters.Add(characterNameParameter);
       cmd.Parameters.Add(characterClassIdParameter);
@@ -246,17 +246,17 @@ namespace CharacterCreator
       classIdParameter.ParameterName = "@CharacterClassId";
       classIdParameter.Value = this.GetClassId();
 
-      SqlParameterbodyTypeIdParameter = new SqlParameter();
-     bodyTypeIdParameter.ParameterName = "@BodyTypeId";
-     bodyTypeIdParameter.Value = this.GetBodyTypeId();
+      SqlParameter bodyTypeIdParameter = new SqlParameter();
+      bodyTypeIdParameter.ParameterName = "@BodyTypeId";
+      bodyTypeIdParameter.Value = this.GetBodyTypeId();
 
       SqlParameter weaponIdParameter = new SqlParameter();
       weaponIdParameter.ParameterName = "@WeaponId";
       weaponIdParameter.Value = this.GetWeaponId();
 
-      SqlParameter ArmorIdParameter = new SqlParameter();
-      ArmorIdParameter.ParameterName = "@ArmorId";
-      ArmorIdParameter.Value = this.GetArmorId();
+      SqlParameter armorIdParameter = new SqlParameter();
+      armorIdParameter.ParameterName = "@ArmorId";
+      armorIdParameter.Value = this.GetArmorId();
 
       SqlParameter specialIdParameter = new SqlParameter();
       specialIdParameter.ParameterName = "@SpecialId";
