@@ -12,9 +12,9 @@
     <div class="char-page hide-char">
         <form class="options">
             <p>Name:</p>
-            <input type="text" name="name" value="">
+            <input type="text" name="name" class="klass">
 
-            <p>Choose your character class</p>
+            <h2>Choose your character class</h2>
             <select id="class">
               @foreach (var c in @Model["class"])
               {
@@ -22,7 +22,28 @@
               }
             </select>
 
-            <p>Choose your Weapon</p>
+            <h2>Choose your Body Type</h2>
+
+            @foreach (var item in @Model["item"])
+            {
+              if(@item.GetTypeId() == 4)
+              {
+            <input type="radio" id="bodyType-@item.GetId()" name="bodyType" data-image="@item.GetImage()" data-name="@item.GetName()">
+            <label for="bodyType-@item.GetId()" class="item">
+              @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
+            </label>}
+          }
+          <h2>Choose your Armor</h2>
+          @foreach (var item in @Model["item"])
+          {
+            if(@item.GetTypeId() == 2)
+            {
+              <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()">
+              <label for="armor-@item.GetId()" class="item">
+                @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
+              </label>}
+        }
+            <h2>Choose your Weapon</h2>
 
             @foreach (var item in @Model["item"])
             {
@@ -34,32 +55,24 @@
             </label>}
           }
 
-            <p>Choose your Armor</p>
-            @foreach (var item in @Model["item"])
-            {
-              if(@item.GetTypeId() == 2)
-              {
-            <input type="radio" id="armor-@item.GetId()" name="armor" value="armor-@item.GetId()">
-            <label for="armor-@item.GetId()" class="item">
-              @item.GetName()<img src="#" alt="" />
-            </label>}
-          }
-
-            <p>Choose your Special</p>
+            <h2>Choose your Special</h2>
             @foreach (var item in @Model["item"])
             {
               if(@item.GetTypeId() == 3)
               {
-            <input type="radio" id="special-@item.GetId()" name="special" value="special-@item.GetId()">
-            <label for="special-@item.GetId()" class="item">
-              @item.GetName()<img src="#" alt="" />
-            </label>}
+                <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()">
+                <label for="special-@item.GetId()" class="item">
+                  @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
+                </label>}
           }
 
             <button type="submit">Create Character</button>
         </form>
         <div class="character">
+          <img class="bodyType" src="" alt="" />
+          <img class="armor" src="" alt="" />
           <img class="weapon" src="" alt="" />
+          <img class="special" src="" alt="" />
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
