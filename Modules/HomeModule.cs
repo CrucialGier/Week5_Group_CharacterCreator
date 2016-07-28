@@ -35,6 +35,31 @@ namespace CharacterCreator
         model.Add("newCharacter", newCharacter);
         return View["new_character.cshtml", model];
       };
+      Get["/character/load"] =_=> {
+        List<Character> AllCharacters = Character.GetAll();
+        return View["load_character.cshtml", AllCharacters];
+      };
+      Get["/character/update/{id}"] =parameters=> {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        model.Add("class", Class.GetAll());
+        model.Add("item", Item.GetAll());
+        model.Add("itemTypes", ItemType.GetAll());
+        Character currentCharacter = Character.Find(parameters.id);
+        model.Add("current", currentCharacter);
+        return View["update_character.cshtml", model];
+      };
+      Post["/character/update/confirm/{id}"] =parameters=> {
+        Character currentCharacter = Character.Find(parameters.id);
+        currentCharacter.SetBodyType(Request.Form["bodyType"]);
+        currentCharacter.SetClass(Request.Form["klass"]);
+        currentCharacter.SetName(Request.Form["name"]);
+        currentCharacter.SetWeapon(Request.Form["weapon"]);
+        currentCharacter.SetArmor(Request.Form["armor"]);
+        currentCharacter.SetSpecial(Request.Form["special"]);
+        currentCharacter.Update();
+        List<Character> AllCharacters = Character.GetAll();
+        return View["load_character.cshtml", AllCharacters];
+      };
     }
   }
 }
