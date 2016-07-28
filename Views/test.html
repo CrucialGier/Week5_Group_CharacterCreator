@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="../Content/css/main.css" media="screen" title="no title" charset="utf-8">
+</head>
+
+<body>
+  <div class="char-page hide-char">
+    <form class="options" action="/character/create" method="post">
+      <p>Name:</p>
+      <input type="text" name="name" value="name" required>
+      <h2>Choose your character class</h2>
+      <select id="class" name="klass">
+        <option value="1">Business Man</option>
+        <option value="2">Space Dragon</option>
+        <option value="3">Alien Cyborg</option>
+      </select>
+      <h2>Choose your Body Type</h2>
+      <input type="radio" id="bodyType-21" name="bodyType" data-image="Bizman-Body.png" data-name="Business body" value="21">
+      <label for="bodyType-21" class="item" required>
+        Business body<img src="../Content/img/Bizman-Body.png" alt="" />
+      </label>
+      <input type="radio" id="bodyType-24" name="bodyType" data-image="Bizman-Golf-Body.png" data-name="Golf body" value="24">
+      <label for="bodyType-24" class="item" required>
+        Golf body<img src="../Content/img/Bizman-Golf-Body.png" alt="" />
+      </label>
+      <input type="radio" id="bodyType-25" name="bodyType" data-image="Bizman-Vacay-Body.png" data-name="Vacation body" value="25">
+      <label for="bodyType-25" class="item" required>
+        Vacation body<img src="../Content/img/Bizman-Vacay-Body.png" alt="" />
+      </label>
+      <input type="radio" id="bodyType-26" name="bodyType" data-image="Cyborg-Body.png" data-name="Cyborg Body" value="26" checked>
+      <label for="bodyType-26" class="item" required>
+        Cyborg Body<img src="../Content/img/Cyborg-Body.png" alt="" />
+      </label>
+      <input type="radio" id="bodyType-27" name="bodyType" data-image="Dragon-Body.png" data-name="Dragon Body" value="27">
+      <label for="bodyType-27" class="item" required>
+        Dragon Body<img src="../Content/img/Dragon-Body.png" alt="" />
+      </label>
+      <h2>Choose your Armor</h2>
+      <input type="radio" id="armor-3" name="armor" data-image="Bizman-Suit-Outfit.png" data-name="Business Outfit" value="3" required>
+      <label for="armor-3" class="item">
+        Business Outfit<img src="../Content/img/Bizman-Suit-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-4" name="armor" data-image="Bizman-Golf-Outfit.png" data-name="Golf Outfit" value="4" required>
+      <label for="armor-4" class="item">
+        Golf Outfit<img src="../Content/img/Bizman-Golf-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-5" name="armor" data-image="Bizman-Vacay-Outfit.png" data-name="Vacation outfit" value="5" required>
+      <label for="armor-5" class="item">
+        Vacation outfit<img src="../Content/img/Bizman-Vacay-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-8" name="armor" data-image="Dragon-Dress-Outfit.png" data-name="Dragon Dress" value="8" required>
+      <label for="armor-8" class="item">
+        Dragon Dress<img src="../Content/img/Dragon-Dress-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-11" name="armor" data-image="Dragon-Swim-Outfit.png" data-name="Dragon swimsuit" value="11" required>
+      <label for="armor-11" class="item">
+        Dragon swimsuit<img src="../Content/img/Dragon-Swim-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-12" name="armor" data-image="Dragon-Suit-Outfit.png" data-name="Dragon suit" value="12" required>
+      <label for="armor-12" class="item">
+        Dragon suit<img src="../Content/img/Dragon-Suit-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-14" name="armor" data-image="Cyborg-Grey-Outfit.png" data-name="Cyborg grey outfit" value="14" required>
+      <label for="armor-14" class="item">
+        Cyborg grey outfit<img src="../Content/img/Cyborg-Grey-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-15" name="armor" data-image="Cyborg-Red-Outfit.png" data-name="Cyborg red outfit" value="15" required>
+      <label for="armor-15" class="item">
+        Cyborg red outfit<img src="../Content/img/Cyborg-Red-Outfit.png" alt="" />
+      </label>
+      <input type="radio" id="armor-17" name="armor" data-image="Cyborg-Yellow-Outfit.png" data-name="Cyborg yellow outfit" value="17" required>
+      <label for="armor-17" class="item">
+        Cyborg yellow outfit<img src="../Content/img/Cyborg-Yellow-Outfit.png" alt="" />
+      </label>
+      <h2>Choose your Weapon</h2>
+      <input type="radio" id="weapon-2" name="weapon" data-image="Bizman-Golf-Golfclub.png" data-name="Golf club" value="2" required>
+      <label for="weapon-2" class="item">
+        Golf club<img src="../Content/img/Bizman-Golf-Golfclub.png" alt="" />
+      </label>
+      <input type="radio" id="weapon-6" name="weapon" data-image="Bizman-Vacay-Shark.png" data-name="Vacation Shark" value="6" required>
+      <label for="weapon-6" class="item">
+        Vacation Shark<img src="../Content/img/Bizman-Vacay-Shark.png" alt="" />
+      </label>
+      <input type="radio" id="weapon-7" name="weapon" data-image="Dragon-Suit-Gun.png" data-name="Dragon gun" value="7" required>
+      <label for="weapon-7" class="item">
+        Dragon gun<img src="../Content/img/Dragon-Suit-Gun.png" alt="" />
+      </label>
+      <input type="radio" id="weapon-9" name="weapon" data-image="Dragon-Dress-Shoe.png" data-name="Dragon Shoe" value="9" required>
+      <label for="weapon-9" class="item">
+        Dragon Shoe<img src="../Content/img/Dragon-Dress-Shoe.png" alt="" />
+      </label>
+      <input type="radio" id="weapon-13" name="weapon" data-image="Cyborg-Grey-Axe.png" data-name="Cyborg axe" value="13" required>
+      <label for="weapon-13" class="item">
+        Cyborg axe<img src="../Content/img/Cyborg-Grey-Axe.png" alt="" />
+      </label>
+      <input type="radio" id="weapon-18" name="weapon" data-image="Cyborg-Yellow-Sword.png" data-name="Cyborg sword" value="18" required>
+      <label for="weapon-18" class="item">
+        Cyborg sword<img src="../Content/img/Cyborg-Yellow-Sword.png" alt="" />
+      </label>
+      <input type="radio" id="weapon-20" name="weapon" data-image="Cyborg-Red-DoubleAxe.png" data-name="Cyborg doubleaxe" value="20" required>
+      <label for="weapon-20" class="item">
+        Cyborg doubleaxe<img src="../Content/img/Cyborg-Red-DoubleAxe.png" alt="" />
+      </label>
+      <h2>Choose your Special</h2>
+      <input type="radio" id="special-1" name="special" data-image="Bizman-Suit-Briefcase.png" data-name="Brief Case" value="1" required>
+      <label for="special-1" class="item">
+        Brief Case<img src="../Content/img/Bizman-Suit-Briefcase.png" alt="" />
+      </label>
+      <input type="radio" id="special-10" name="special" data-image="Dragon-Swim-Duck.png" data-name="Dragon Duck" value="10" required>
+      <label for="special-10" class="item">
+        Dragon Duck<img src="../Content/img/Dragon-Swim-Duck.png" alt="" />
+      </label>
+      <input type="radio" id="special-16" name="special" data-image="Cyborg-Hair.png" data-name="Cyborg hair" value="16" required>
+      <label for="special-16" class="item">
+        Cyborg hair<img src="../Content/img/Cyborg-Hair.png" alt="" />
+      </label>
+      <button type="submit">Create Character</button>
+    </form>
+    <div class="character-stage">
+      <img class="bodyType" src="" alt="" />
+      <img class="armor" src="" alt="" />
+      <img class="weapon" src="" alt="" />
+      <img class="special" src="" alt="" />
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <script src="../Content/js/main.js"></script>
+</body>
+
+</html>
