@@ -3,21 +3,18 @@
   <head>
       <meta charset="utf-8">
       <title></title>
-      <link rel="stylesheet" href="../Content/css/main.css" media="screen" title="no title" charset="utf-8">
+      <link rel="stylesheet" href="../../Content/css/main.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
     <div class="char-page hide-char">
-        <form class="options" action="/character/update/confirm/@Model["current"].GetId()" method="post">
+        <form class="options" action="/character/confirm-update/@Model["current"].GetId()" method="post">
             <p>Name:</p>
             <input type="text" name="name" value ="name">
             <h2>Choose your character class</h2>
-            <select id="class" name ="klass" >
-              @foreach (var c in @Model["class"])
+            <select id="klass" name ="klass" >
+              @foreach (var c in @Model["klass"])
               {
-                if (@Model["current"].GetId() == @c.GetId())
-                {
-                  <option value="@c.GetId()" selected>@c.GetName()</option>
-                }
+                <option value="@c.GetId()" selected>@c.GetName()</option>
               }
             </select>
             <h2>Choose your Body Type</h2>
@@ -29,7 +26,7 @@
                   {
                     <input type="radio" id="bodyType-@item.GetId()" name="bodyType" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" selected>
                     <label for="bodyType-@item.GetId()" class="item">
-                      @item.GetName()<img src="../Content/img/@item.GetImage()" alt=""/>
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
                     </label>
                   }
                 }
@@ -41,7 +38,7 @@
                 {
                   <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
                   <label for="armor-@item.GetId()" class="item">
-                    @item.GetName()<img src="../Content/img/@item.GetImage()" alt=""/>
+                    @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
                   </label>
                 }
               }
@@ -52,7 +49,7 @@
                 {
                   <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
                   <label for="weapon-@item.GetId()" class="item">
-                    @item.GetName()<img src="../Content/img/@item.GetImage()" alt=""/>
+                    @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
                   </label>
                 }
               }
@@ -63,7 +60,7 @@
                 {
                   <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
                   <label for="special-@item.GetId()" class="item">
-                    @item.GetName()<img src="../Content/img/@item.GetImage()" alt=""/>
+                    @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
                   </label>
                 }
               }
@@ -77,6 +74,6 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-    <script src="../Content/js/main.js"></script>
+    <script src="../../Content/js/main.js"></script>
   </body>
 </html>
