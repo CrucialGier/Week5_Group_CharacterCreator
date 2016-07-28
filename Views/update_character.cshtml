@@ -24,7 +24,14 @@
                 {
                   if (@Model["current"].GetBodyTypeId() == @item.GetId())
                   {
-                    <input type="radio" id="bodyType-@item.GetId()" name="bodyType" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" selected>
+                    <input type="radio" id="bodyType-@item.GetId()" name="bodyType" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" checked>
+                    <label for="bodyType-@item.GetId()" class="item">
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
+                    </label>
+                  }
+                  else
+                  {
+                    <input type="radio" id="bodyType-@item.GetId()" name="bodyType" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
                     <label for="bodyType-@item.GetId()" class="item">
                       @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
                     </label>
@@ -36,10 +43,20 @@
               {
                 if (@item.GetTypeId() == 2)
                 {
-                  <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
-                  <label for="armor-@item.GetId()" class="item">
-                    @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
-                  </label>
+                  if (@Model["current"].GetArmorId() == @item.GetId())
+                  {
+                    <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" checked>
+                    <label for="armor-@item.GetId()" class="item">
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
+                    </label>
+                  }
+                  else
+                  {
+                    <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
+                    <label for="armor-@item.GetId()" class="item">
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
+                    </label>
+                  }
                 }
               }
               <h2>Choose your Weapon</h2>
@@ -47,10 +64,20 @@
               {
                 if (@item.GetTypeId() == 1)
                 {
-                  <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
-                  <label for="weapon-@item.GetId()" class="item">
-                    @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
-                  </label>
+                  if (@Model["current"].GetWeaponId() == @item.GetId())
+                  {
+                    <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" checked>
+                    <label for="weapon-@item.GetId()" class="item">
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
+                    </label>
+                  }
+                  else
+                  {
+                    <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" checked>
+                    <label for="weapon-@item.GetId()" class="item">
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
+                    </label>
+                  }
                 }
               }
               <h2>Choose your Special</h2>
@@ -58,10 +85,20 @@
               {
                 if (@item.GetTypeId() == 3)
                 {
-                  <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
-                  <label for="special-@item.GetId()" class="item">
-                    @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
-                  </label>
+                  if (@Model["current"].GetSpecialId() == @item.GetId())
+                  {
+                    <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" checked>
+                    <label for="special-@item.GetId()" class="item">
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
+                    </label>
+                  }
+                  else
+                  {
+                    <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
+                    <label for="special-@item.GetId()" class="item">
+                      @item.GetName()<img src="../../Content/img/@item.GetImage()" alt=""/>
+                    </label>
+                  }
                 }
               }
               <button type="submit">Update Character</button>
