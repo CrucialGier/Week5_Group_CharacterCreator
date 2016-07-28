@@ -12,7 +12,7 @@
     <div class="char-page hide-char">
         <form class="options" action="/character/create" method="post">
             <p>Name:</p>
-            <input type="text" name="name" value = "name">
+            <input type="text" name="name" value = "name" required>
 
             <h2>Choose your character class</h2>
             <select id="class" name = "klass" >
@@ -29,7 +29,7 @@
               if(@item.GetTypeId() == 4)
               {
             <input type="radio" id="bodyType-@item.GetId()" name="bodyType" data-image="@item.GetImage()" data-name="@item.GetName()" value= "@item.GetId()">
-            <label for="bodyType-@item.GetId()" class="item">
+            <label for="bodyType-@item.GetId()" class="item" required>
               @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
             </label>}
           }
@@ -38,7 +38,7 @@
           {
             if(@item.GetTypeId() == 2)
             {
-              <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()">
+              <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" required>
               <label for="armor-@item.GetId()" class="item">
                 @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
               </label>}
@@ -49,7 +49,7 @@
             {
               if(@item.GetTypeId() == 1)
               {
-            <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()" value = "@item.GetId()">
+            <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()" value = "@item.GetId()" required>
             <label for="weapon-@item.GetId()" class="item">
               @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
             </label>}
@@ -60,7 +60,7 @@
             {
               if(@item.GetTypeId() == 3)
               {
-                <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()" value = "@item.GetId()">
+                <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()" value = "@item.GetId()" required>
                 <label for="special-@item.GetId()" class="item">
                   @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
                 </label>}
@@ -69,9 +69,10 @@
             <button type="submit">Create Character</button>
         </form>
         <div class="character">
-          <img class="bodyType" src="" alt="" />
-          <img class="armor" src="" alt="" />
-          <img class="weapon" src="" alt="" />
+          <img class="bodyType" src="" alt=""/>
+
+          <img class="armor" src="" alt=""/>
+          <img class="weapon" src="" alt=""/>
           <img class="special" src="" alt="" />
         </div>
     </div>
