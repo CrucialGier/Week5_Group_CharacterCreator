@@ -11,7 +11,8 @@ body {
   color: white;
   text-align: center;
   margin: 0;
-  min-height: 100vh; }
+  min-height: 100vh;
+  overflow: hidden; }
 
 button {
   margin: 10px;
@@ -31,34 +32,114 @@ button {
 .char-page {
   display: flex;
   height: 100vh; }
-  .char-page div {
-    border: 1px dotted black; }
   .char-page .options {
-    flex: 1; }
-  .char-page .item {
-    width: 200px;
-    height: 100px; }
-  .char-page .character-form {
-    width: 200px;
-    float: left;
-    display: flex;
-    align-items: center; }
-    .char-page .character-form form {
-      width: 100%; }
-    .char-page .character-form .extended-form {
-      display: none; }
-  .char-page .armour {
     flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center; }
-    .char-page .armour .armour-piece {
-      height: 150px;
-      width: 150px;
-      border: 1px solid black; }
-  .char-page .character {
-    flex: 1; }
+    height: 100vh;
+    overflow: scroll; }
+  .char-page input[type=radio] {
+    position: absolute;
+    visibility: hidden; }
+  .char-page input[type=radio]:checked + label {
+    -webkit-filter: drop-shadow(0 0 20px yellow);
+    color: yellow;
+    font-weight: bold; }
+  .char-page .item {
+    display: inline-flex;
+    width: 100px;
+    flex-direction: column;
+    position: relative;
+    text-align: center; }
+    .char-page .item img {
+      width: 100%;
+      position: relative; }
+  .char-page .character-stage {
+    flex: 1;
+    height: 100vh;
+    position: relative;
+    margin-top: 250px;
+    margin-left: 100px; }
+    .char-page .character-stage .armor,
+    .char-page .character-stage .bodyType,
+    .char-page .character-stage .bodyTypef,
+    .char-page .character-stage .special,
+    .char-page .character-stage .weapon {
+      position: absolute;
+      top: 0;
+      left: 0; }
+    .char-page .character-stage [data-name="Golf body"] {
+      top: -9px; }
+    .char-page .character-stage [data-name="Cyborg Body"] {
+      top: 7px; }
+    .char-page .character-stage [data-name="Dragon Body"] {
+      top: -209px;
+      left: -116px; }
+    .char-page .character-stage [data-name="Business Outfit"] {
+      top: 163px;
+      left: 0; }
+    .char-page .character-stage [data-name="Golf Outfit"] {
+      top: 163px;
+      left: -3px; }
+    .char-page .character-stage [data-name="Vacation outfit"] {
+      top: 163px;
+      left: -3px; }
+    .char-page .character-stage [data-name="Dragon Dress"] {
+      top: 163px;
+      left: -32px; }
+    .char-page .character-stage [data-name="Dragon swimsuit"] {
+      top: 168px;
+      left: 50px; }
+    .char-page .character-stage [data-name="Dragon suit"] {
+      top: 163px;
+      left: 0; }
+    .char-page .character-stage [data-name="Cyborg grey outfit"] {
+      top: 163px;
+      left: -10px; }
+    .char-page .character-stage [data-name="Cyborg red outfit"] {
+      top: 133px;
+      left: -17px; }
+    .char-page .character-stage [data-name="Cyborg yellow outfit"] {
+      top: 163px;
+      left: -67px; }
+    .char-page .character-stage [data-name="Golf club"] {
+      top: 50px;
+      left: 190px;
+      transform: rotate(-150deg); }
+    .char-page .character-stage [data-name="Vacation Shark"] {
+      top: 217px;
+      left: 132px;
+      transform: rotate(-40deg); }
+    .char-page .character-stage [data-name="Dragon gun"] {
+      top: 280px;
+      left: 150px;
+      transform: rotate(30deg) scale(0.6); }
+    .char-page .character-stage [data-name="Dragon Shoe"] {
+      top: 250px;
+      left: 141px;
+      transform: rotate(-40deg) scale(0.5); }
+    .char-page .character-stage [data-name="Cyborg axe"] {
+      top: 110px;
+      left: 230px;
+      transform: rotate(10deg) scale(1.5); }
+    .char-page .character-stage [data-name="Cyborg sword"] {
+      top: 120px;
+      left: 250px;
+      transform: rotate(220deg); }
+    .char-page .character-stage [data-name="Cyborg doubleaxe"] {
+      top: 130px;
+      left: 160px;
+      transform: rotate(20deg); }
+    .char-page .character-stage [data-name="Brief Case"] {
+      top: 379px;
+      left: -63px;
+      transform: rotate(0deg); }
+    .char-page .character-stage [data-name="Dragon Duck"] {
+      top: 70px;
+      left: -120px;
+      transform: rotate(-30deg) scale(0.6); }
+    .char-page .character-stage [data-name="Cyborg hair"] {
+      top: -72px;
+      left: -6px;
+      transform: rotate(0deg); }
 
 .main-img {
   width: 100%;
@@ -70,29 +151,4 @@ button {
   position: relative;
   font-size: 150px; }
 
-<<<<<<< HEAD
-=======
-.armour {
-  height: 600px;
-  width: 100%;
-  border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
-  float: right; }
-
-.armour-piece {
-  height: 150px;
-  width: 150px;
-  border: 1px solid black; }
-
-.form {
-  border: 1px solid black;
-  width: 200px;
-  float: left; }
- img{
-   height: 150px;
-   width: 150px;
-   border: 1px solid black;
- }
->>>>>>> 76223a74a00b4bc86c3faedfc6bec6d3fb824856
 /*# sourceMappingURL=main.css.map */
