@@ -144,31 +144,3 @@ button {
 .title {
   position: relative;
   font-size: 150px; }
-
-<<<<<<< HEAD
-.armour {
-  height: 600px;
-  width: 100%;
-  border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
-  float: right; }
-
-.armour-piece {
-  height: 150px;
-  width: 150px;
-  border: 1px solid black; }
-
-.form {
-  border: 1px solid black;
-  width: 200px;
-  float: left; }
- img{
-   align: center;
-   height: 250px;
-   width: 250px;
-   border: 1px solid black;
- }
-=======
-/*# sourceMappingURL=main.css.map */
->>>>>>> 733d610fcdcca9d9941fe4bb41c6b754eb15ef4a

@@ -9,7 +9,7 @@
     <div class="char-page hide-char">
         <form class="options" action="/character/confirm-update/@Model["current"].GetId()" method="post">
             <p>Name:</p>
-            <input type="text" name="name" value ="name">
+            <input type="text" name="name" value ="@Model["current"].GetName()">
             <h2>Choose your character class</h2>
             <select id="klass" name ="klass" >
               @foreach (var c in @Model["klass"])
