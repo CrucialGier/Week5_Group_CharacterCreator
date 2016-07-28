@@ -106,7 +106,7 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO characters (name, class_id, bodyType_id, weapon_id, armor_id, specia_id) OUTPUT INSERTED.id VALUES (@CharacterName, @CharacterClassId, @BodyTypeId, @WeaponId, @ArmorId, @SpecialId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO characters (name, class_id, bodyType_id, weapon_id, armor_id, special_id) OUTPUT INSERTED.id VALUES (@CharacterName, @CharacterClassId, @BodyTypeId, @WeaponId, @ArmorId, @SpecialId);", conn);
 
       SqlParameter characterNameParameter = new SqlParameter();
       characterNameParameter.ParameterName = "@CharacterName";
@@ -236,14 +236,14 @@ namespace CharacterCreator
       conn.Open();
       SqlDataReader rdr;
 
-      SqlCommand cmd = new SqlCommand("UPDATE characters SET name = @CharacterName, class_id = @ClassId, bodyType_id = @BodyTypeId, weapon_id = @WeaponId, armor_id = @ArmorId, special_id = @SpecialId OUTPUT INSERTED.name, INSERTED.class_id, INSERTED.bodyType_id, INSERTED.weapon_id, INSERTED.armor_id, INSERTED.special_id INSERTED. WHERE id = @QueryId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE characters SET name = @CharacterName, class_id = @ClassId, bodyType_id = @BodyTypeId, weapon_id = @WeaponId, armor_id = @ArmorId, special_id = @SpecialId OUTPUT INSERTED.id WHERE id = @QueryId;", conn);
 
       SqlParameter nameParameter = new SqlParameter();
       nameParameter.ParameterName = "@CharacterName";
       nameParameter.Value = this.GetName();
 
       SqlParameter classIdParameter = new SqlParameter();
-      classIdParameter.ParameterName = "@CharacterClassId";
+      classIdParameter.ParameterName = "@ClassId";
       classIdParameter.Value = this.GetClassId();
 
       SqlParameter bodyTypeIdParameter = new SqlParameter();
