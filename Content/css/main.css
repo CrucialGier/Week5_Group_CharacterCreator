@@ -1,5 +1,12 @@
+@font-face {
+  font-family: 'minstrelposterwhgregular';
+  src: url("../fonts/MINSPSW_-webfont.eot");
+  src: url("../fonts/MINSPSW_-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/MINSPSW_-webfont.woff") format("woff"), url("../fonts/MINSPSW_-webfont.ttf") format("truetype"), url("../fonts/MINSPSW_-webfont.svg#minstrelposterwhgregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 html {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: sans-serif; }
 
 *,
 *:after,
@@ -53,25 +60,37 @@ button {
     position: absolute;
     visibility: hidden; }
   .char-page input[type=radio]:checked + label {
-    -webkit-filter: drop-shadow(0 0 20px yellow);
-    color: yellow;
-    font-weight: bold; }
+    -webkit-filter: drop-shadow(0 0 20px #fff0b4);
+    color: #fff0b4;
+    font-weight: bolder; }
+  .char-page input[type=text], .char-page select {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px; }
   .char-page .item {
+    -webkit-filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.4));
     display: inline-flex;
-    width: 100px;
+    max-width: 150px;
     flex-direction: column;
     position: relative;
-    text-align: center; }
+    text-align: center;
+    margin: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: capitalize; }
     .char-page .item img {
+      margin-top: 10px;
+      margin-bottom: 30px;
       width: 100%;
       position: relative; }
+  .char-page .character > * {
+    margin-left: calc(25vw - 100px);
+    margin-top: calc(50vh - 200px); }
 
 .character {
   flex: 1;
   height: 600px;
   width: 400px;
-  margin-left: 150px;
-  margin-top: 230px;
   position: relative;
   display: inline-block; }
   .character .armor,
@@ -160,7 +179,22 @@ button {
   position: relative;
   font-size: 150px;
   margin: 0;
-  margin-bottom: 70vh; }
+  margin-bottom: 70vh;
+  font-family: 'minstrelposterwhgregular';
+  letter-spacing: .1em; }
+
+h2, h3 {
+  font-family: 'minstrelposterwhgregular';
+  letter-spacing: .2em;
+  font-size: 1.8em; }
+  h2 a, h3 a {
+    font-family: sans-serif; }
+
+h3 {
+  font-size: 2.2em; }
+
+a {
+  color: white; }
 
 .background {
   z-index: -9999;

@@ -50,6 +50,7 @@ function Cube(id, size, left, top) {
 }
 var cubes = [];
 $(function() {
+  // $('input[data-name="Business body"], input[data-name="Business Outfit"], input[data-name="Golf club"], input[data-name="Brief Case"]').prop('checked', true);
     $("input[type='radio']:checked").each(function(){
       console.log($(this).attr("data-image"));
       var src = "../../Content/img/" + $(this).attr("data-image");
