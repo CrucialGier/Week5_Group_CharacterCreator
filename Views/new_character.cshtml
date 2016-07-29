@@ -8,22 +8,24 @@
 </head>
 
 <body>
-  <div class="character">
-
-    <img src="../Content/img/@Model["bodyType"].GetImage()" alt="" />
-    <img src="../Content/img/@Model["armor"].GetImage()" alt="" />
-    <img src="../Content/img/@Model["weapon"].GetImage()" alt=""  />
-    <img src="../Content/img/@Model["special"].GetImage()" alt=""  />
+  <div class="new-character">
     <br>
     <h3>@Model["className"].GetName()</h3>
     <br>
     <h3>@Model["newCharacter"].GetName()</h3>
+  <div class="character">
+    <img src="../Content/img/@Model["bodyType"].GetImage()" alt="" class="bodyType" data-name="@Model["bodyType"].GetName()"/>
+    <img src="../Content/img/@Model["armor"].GetImage()" alt="" class="armor" data-name="@Model["armor"].GetName()"/>
+    <img src="../Content/img/@Model["weapon"].GetImage()" alt="" class="weapon"  data-name="@Model["weapon"].GetName()"/>
+    <img src="../Content/img/@Model["special"].GetImage()" alt="" class="special"  data-name="@Model["special"].GetName()"/>
   </div>
 </div>
 <hr>
 <h2><a href="/">Home Page</a></h2>
 <hr>
 <h2><a href="/character/new">Create New Character</a></h2>
+
+</div>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 <script src="../Content/js/main.js"></script>
 </body>
