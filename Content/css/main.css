@@ -27,7 +27,20 @@ button {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  background-size: contain;
+  background-repeat: no-repeat; }
+
+.title-card {
+  position: fixed;
+  z-index: -9;
+  height: 90vh;
+  image-rendering: pixelated;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto; }
 
 .char-page {
   display: flex;
@@ -145,6 +158,49 @@ button {
 
 .title {
   position: relative;
-  font-size: 150px; }
+  font-size: 150px;
+  margin: 0;
+  margin-bottom: 70vh; }
+
+.background {
+  z-index: -9999;
+  top: 0;
+  left: 0;
+  background: linear-gradient(#5b526c, #2a2632, black);
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  margin: 0;
+  -webkit-perspective: 100px;
+  -webkit-perspective-origin: 50% 50%;
+  -webkit-transform-style: preserve-3d; }
+
+[class*="-wrap"] {
+  position: absolute;
+  margin: auto;
+  perspective: 1000px;
+  perspective-origin: 50% 100px; }
+  [class*="-wrap"] .shape {
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 6s infinite linear;
+    height: 100%;
+    width: 100%; }
+    [class*="-wrap"] .shape .face {
+      box-shadow: 0 0 50px #fff0b4;
+      position: absolute;
+      perspective: 1000px;
+      height: 100%;
+      width: 100%;
+      background-image: radial-gradient(rgba(255, 240, 180, 0.3), #fff0b4);
+      border: 1px solid white; }
+
+@keyframes spin {
+  from {
+    transform: rotate3d(0, 0, 0, 360deg); }
+  to {
+    transform: rotate3d(1, 1, 1, 360deg); } }
 
 /*# sourceMappingURL=main.css.map */
