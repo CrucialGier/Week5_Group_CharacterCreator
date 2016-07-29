@@ -10,43 +10,70 @@
 <body>
 
     <div class="char-page hide-char">
-        <form class="options">
+        <form class="options" action="/character/create" method="post">
             <p>Name:</p>
-            <input type="text" name="name" value="">
-            <p>Choose your character class</p>
-            <select id="class">
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="custom">Custom</option>
+            <input type="text" name="name" value = "name" required>
+
+            <h2>Choose your character class</h2>
+            <select id="class" name = "klass" >
+              @foreach (var c in @Model["class"])
+              {
+                  <option value="@c.GetId()">@c.GetName()</option>
+              }
             </select>
-            <p>Choose your chest piece</p>
-            <input type="radio" id="chest-1" name="chest" value="chest-1">
-            <label for="chest-1" class="item">
-              <img src="#" alt="" />
-            </label>
-            <p>Choose your arm pieces</p>
-            <input type="radio" id="arm-1" name="arm" value="arm-1">
-            <label for="arm-1" class="item">
-              <img src="#" alt="" />
-            </label>
-            <p>Choose your leg pieces</p>
-            <input type="radio" id="leg-1" name="leg" value="leg-1">
-            <label for="leg-1" class="item">
-              <img src="#" alt="" />
-            </label>
-            <p>Choose your head piece</p>
-            <input type="radio" id="head-1" name="head" value="head-1">
-            <label for="head-1" class="item">
-              <img src="#" alt="" />
-            </label>
-            <p>Choose your weapon</p>
-            <input type="radio" id="weapon-1" name="weapon" value="weapon-1">
-            <label for="weapon-1" class="item">
-              <img src="#" alt="" />
-            </label>
+
+            <h2>Choose your Body Type</h2>
+
+            @foreach (var item in @Model["item"])
+            {
+              if(@item.GetTypeId() == 4)
+              {
+            <input type="radio" id="bodyType-@item.GetId()" name="bodyType" data-image="@item.GetImage()" data-name="@item.GetName()" value= "@item.GetId()">
+            <label for="bodyType-@item.GetId()" class="item" required>
+              @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
+            </label>}
+          }
+          <h2>Choose your Armor</h2>
+          @foreach (var item in @Model["item"])
+          {
+            if(@item.GetTypeId() == 2)
+            {
+              <input type="radio" id="armor-@item.GetId()" name="armor" data-image="@item.GetImage()" data-name="@item.GetName()" value="@item.GetId()" required>
+              <label for="armor-@item.GetId()" class="item">
+                @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
+              </label>}
+        }
+            <h2>Choose your Weapon</h2>
+
+            @foreach (var item in @Model["item"])
+            {
+              if(@item.GetTypeId() == 1)
+              {
+            <input type="radio" id="weapon-@item.GetId()" name="weapon" data-image="@item.GetImage()" data-name="@item.GetName()" value = "@item.GetId()" required>
+            <label for="weapon-@item.GetId()" class="item">
+              @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
+            </label>}
+          }
+
+            <h2>Choose your Special</h2>
+            @foreach (var item in @Model["item"])
+            {
+              if(@item.GetTypeId() == 3)
+              {
+                <input type="radio" id="special-@item.GetId()" name="special" data-image="@item.GetImage()" data-name="@item.GetName()" value = "@item.GetId()" required>
+                <label for="special-@item.GetId()" class="item">
+                  @item.GetName()<img src="../Content/img/@item.GetImage()" alt="" />
+                </label>}
+          }
+
             <button type="submit">Create Character</button>
         </form>
         <div class="character">
+          <img class="bodyType" src="" alt=""/>
+
+          <img class="armor" src="" alt=""/>
+          <img class="weapon" src="" alt=""/>
+          <img class="special" src="" alt="" />
         </div>
     </div>
 
