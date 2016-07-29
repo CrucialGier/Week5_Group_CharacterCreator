@@ -60,16 +60,18 @@ button {
     }
   }
 }
-
 .character {
   flex: 1;
-  height: 100vh;
+  height: 600px;
+  width: 400px;
+  margin-left: 150px;
+  margin-top: 230px;
   position: relative;
-  margin-top: 250px;
-  margin-left: 100px;
+  display: inline-block;
+  // margin-top: 250px;
+  // margin-left: 1200px;
   .armor,
   .bodyType,
-  .bodyTypef,
   .special,
   .weapon {
     position: absolute;

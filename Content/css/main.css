@@ -55,13 +55,14 @@ button {
 
 .character {
   flex: 1;
-  height: 100vh;
+  height: 600px;
+  width: 400px;
+  margin-left: 150px;
+  margin-top: 230px;
   position: relative;
-  margin-top: 250px;
-  margin-left: 100px; }
+  display: inline-block; }
   .character .armor,
   .character .bodyType,
-  .character .bodyTypef,
   .character .special,
   .character .weapon {
     position: absolute;
@@ -145,3 +146,5 @@ button {
 .title {
   position: relative;
   font-size: 150px; }
+
+/*# sourceMappingURL=main.css.map */
